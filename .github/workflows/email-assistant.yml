@@ -1,0 +1,14 @@
+name: Email AI Assistant
+
+on:
+  schedule:
+    - cron: '30 23 * * *'
+  workflow_dispatch:
+
+jobs:
+  email-assistant:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Start Email Assistant
+        run: echo "Email assistant started"
