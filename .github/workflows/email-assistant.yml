@@ -10,5 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Start Email Assistant
-        run: echo "Email assistant started"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Email AI Assistant
+        env:
+          COMPANY_EMAIL_USER: ${{ secrets.COMPANY_EMAIL_USER }}
+          COMPANY_EMAIL_PASSWORD: ${{ secrets.COMPANY_EMAIL_PASSWORD }}
+          COMPANY_POP3_HOST: ${{ secrets.COMPANY_POP3_HOST }}
+          COMPANY_POP3_PORT: '995'
+          NAVER_EMAIL_USER: ${{ secrets.NAVER_EMAIL_USER }}
+          NAVER_EMAIL_PASSWORD: ${{ secrets.NAVER_EMAIL_PASSWORD }}
+        run: python email_assistant.py
